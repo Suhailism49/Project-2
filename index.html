@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Bankieren</title>
+    <style>
+        /* Reset en basis stijlen */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        /* Header styling */
+        .header {
+            background-color: #003366;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        /* Navigatie styling */
+        .nav {
+            background-color: #004d99;
+            padding: 1rem;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-list a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-list a:hover {
+            background-color: #0066cc;
+        }
+
+        /* Main content styling */
+        .main-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        /* Footer styling */
+        .footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Online Bankieren</h1>
+    </header>
+
+    <nav class="nav">
+        <ul class="nav-list">
+            <li><a href="#home" onclick="showSection('home')">Home</a></li>
+            <li><a href="#rekeningen" onclick="showSection('rekeningen')">Rekeningen</a></li>
+            <li><a href="#overschrijvingen" onclick="showSection('overschrijvingen')">Overschrijvingen</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <section id="home" class="section active">
+            <h2>Welkom bij Online Bankieren</h2>
+            <p>Selecteer een optie in het menu om te beginnen.</p>
+        </section>
+
+        <section id="rekeningen" class="section">
+            <h2>Uw Rekeningen</h2>
+            <p>Hier komt een overzicht van uw rekeningen.</p>
+        </section>
+
+        <section id="overschrijvingen" class="section">
+            <h2>Overschrijvingen</h2>
+            <p>Hier kunt u nieuwe overschrijvingen maken.</p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Online Bankieren</p>
+    </footer>
+
+    <script>
+        // Functie voor het tonen van verschillende secties
+        function showSection(sectionId) {
+            // Verberg alle secties
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Toon de geselecteerde sectie
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        // Event listener voor als de pagina laadt
+        document.addEventListener('DOMContentLoaded', () => {
+            // Toon de home sectie bij het laden van de pagina
+            showSection('home');
+        });
+    </script>
+</body>
+</html>
