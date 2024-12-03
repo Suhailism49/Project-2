@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Systeem</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .login-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 300px;
+        }
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .dashboard {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div id="loginForm" class="login-form">
+            <h2>Login</h2>
+            <input type="text" id="username" placeholder="Gebruikersnaam">
+            <input type="password" id="password" placeholder="Wachtwoord">
+            <button onclick="validateLogin()">Inloggen</button>
+            <div id="errorMessage" class="error-message"></div>
+        </div>
+
+        <div id="dashboardSection" class="dashboard" style="display:none;">
+            <h2>Welkom, <span id="userNameDisplay"></span>!</h2>
+            <p>Dit is je persoonlijke dashboard.</p>
+            <button onclick="logout()">Uitloggen</button>
+        </div>
+    </div>
+
+    <script>
+        // Vooraf ingestelde gebruikers
+        const users = [
+            { username: 'admin', password: 'admin123', name: 'Systeembeheerder' },
+            { username: 'john', password: 'doe123', name: 'John Doe' },
+            { username: 'jane', password: 'smith456', name: 'Jane Smith' }
+        ];
+
+        function validateLogin() {
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const errorMessage = document.getElementById('errorMessage');
+            const loginForm = document.getElementById('loginForm');
+            const dashboardSection = document.getElementById('dashboardSection');
+            const userNameDisplay = document.getElementById('userNameDisplay');
+
+            // Reset foutmelding
+            errorMessage.textContent = '';
+
+            // Zoek gebruiker
+            const user = users.find(u => 
+                u.username === usernameInput.value && 
+                u.password === passwordInput.value
+            );
+
+            if (user) {
+                // Succesvol ingelogd
+                loginForm.style.display = 'none';
+                dashboardSection.style.display = 'block';
+                userNameDisplay.textContent = user.name;
+            } else {
+                // Ongeldige inloggegevens
+                errorMessage.textContent = 'Ongeldige gebruikersnaam of wachtwoord';
+            }
+        }
+
+        function logout() {
+            const loginForm = document.getElementById('loginForm');
+            const dashboardSection = document.getElementById('dashboardSection');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+
+            // Reset formulier
+            usernameInput.value = '';
+            passwordInput.value = '';
+
+            // Toon login, verberg dashboard
+            dashboardSection.style.display = 'none';
+            loginForm.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
