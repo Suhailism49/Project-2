@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Rekening Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+    const BankDashboard = () => {
+        const [rekeningen, setRekeningen] = React.useState([
+            { 
+                id: '1', 
+                naam: 'Betaalrekening', 
+                type: 'Betaalrekening', 
+                saldo: 2750.45, 
+                valuta: '€' 
+            },
+            { 
+                id: '2', 
+                naam: 'Spaarrekening', 
+                type: 'Spaarrekening', 
+                saldo: 15500.00, 
+                valuta: '€' 
+            },
+            { 
+                id: '3', 
+                naam: 'Creditcard', 
+                type: 'Creditcard', 
+                saldo: -750.25, 
+                valuta: '€' 
+            }
+        ]);
+
+        const [isNieuweRekeningModal, setIsNieuweRekeningModal] = React.useState(false);
+        const [nieuweRekeningNaam, setNieuweRekeningNaam] = React.useState('');
+        const [nieuweRekeningType, setNieuweRekeningType] = React.useState('Betaalrekening');
+
+        const voegRekeningToe = () => {
+            if (nieuweRekeningNaam.trim() === '') return;
+
+            const nieuweRekening = {
+                id: String(rekeningen.length + 1),
+                naam: nieuweRekeningNaam,
+                type: nieuweRekeningType,
+                saldo: 0,
+                valuta: '€'
+            };
+
+            setRekeningen([...rekeningen, nieuweRekening]);
+            setIsNieuweRekeningModal(false);
+            setNieuweRekeningNaam('');
+        };
+
+        const getRekeningIcon = (type) => {
+            switch(type) {
+                case 'Betaalrekening': return '💳';
+                case 'Spaarrekening': return '💰';
+                case 'Creditcard': return '💵';
+            }
+        };
+
+        return (
+            <div className="bg-gray-100 min-h-screen p-6">
+                <div className="max-w-4xl mx-auto">
+                    <h1 className="text-3xl font-bold mb-6 text-gray-800">Mijn Rekeningen</h1>
+                    
+                    <div className="grid md:grid-cols-3 gap-4">
+                        {rekeningen.map((rekening) => (
+                            <div 
+                                key={rekening.id} 
+                                className="bg-white rounded-lg shadow-md p-5 transition hover:shadow-lg"
+                            >
+                                <div className="flex items-center mb-3">
+                                    <span className="mr-3 text-2xl">{getRekeningIcon(rekening.type)}</span>
+                                    <h2 className="text-lg font-semibold">{rekening.naam}</h2>
+                                </div>
+                                <div className="text-right">
+                                    <p className={`text-2xl font-bold ${rekening.saldo >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                                        {rekening.valuta} {Math.abs(rekening.saldo).toFixed(2)}
+                                    </p>
+                                    <p className="text-sm text-gray-500">{rekening.type}</p>
+                                </div>
+                            </div>
+                        ))}
+                        
+                        <div 
+                            onClick={() => setIsNieuweRekeningModal(true)}
+                            className="bg-blue-50 border-2 border-dashed border-blue-300 rounded-lg p-5 flex items-center justify-center cursor-pointer hover:bg-blue-100 transition"
+                        >
+                            <div className="text-center">
+                                <span className="text-4xl mb-2 block">➕</span>
+                                <p className="text-blue-600 font-semibold">Nieuwe Rekening</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {isNieuweRekeningModal && (
+                        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                            <div className="bg-white rounded-lg p-6 w-96">
+                                <h2 className="text-xl font-bold mb-4">Nieuwe Rekening Aanmaken</h2>
+                                <input 
+                                    type="text" 
+                                    placeholder="Naam van de Rekening"
+                                    value={nieuweRekeningNaam}
+                                    onChange={(e) => setNieuweRekeningNaam(e.target.value)}
+                                    className="w-full p-2 border rounded mb-4"
+                                />
+                                <select 
+                                    value={nieuweRekeningType}
+                                    onChange={(e) => setNieuweRekeningType(e.target.value)}
+                                    className="w-full p-2 border rounded mb-4"
+                                >
+                                    <option value="Betaalrekening">Betaalrekening</option>
+                                    <option value="Spaarrekening">Spaarrekening</option>
+                                    <option value="Creditcard">Creditcard</option>
+                                </select>
+                                <div className="flex justify-end space-x-2">
+                                    <button 
+                                        onClick={() => setIsNieuweRekeningModal(false)}
+                                        className="px-4 py-2 bg-gray-200 rounded"
+                                    >
+                                        Annuleren
+                                    </button>
+                                    <button 
+                                        onClick={voegRekeningToe}
+                                        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                                    >
+                                        Toevoegen
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+        );
+    };
+
+    ReactDOM.render(<BankDashboard />, document.getElementById('root'));
+    </script>
+</body>
+</html>

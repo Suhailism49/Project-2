@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mijn Rekeningen Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto p-6">
+        <h1 class="text-3xl font-bold mb-6 text-gray-800">Mijn Rekeningen</h1>
+        
+        <div class="grid md:grid-cols-3 gap-4">
+            <!-- Bestaande Rekening Kaart 1 -->
+            <div class="bg-gray-100 shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow">
+                <div class="flex justify-between items-center mb-2">
+                    <h2 class="text-sm font-medium text-gray-600">Betaalrekening</h2>
+                    <svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                    </svg>
+                </div>
+                <div class="text-2xl font-bold text-gray-800">
+                    € 1.250,75
+                </div>
+                <p class="text-xs text-gray-500">Rekening Type: Current</p>
+            </div>
+
+            <!-- Bestaande Rekening Kaart 2 -->
+            <div class="bg-green-100 shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow">
+                <div class="flex justify-between items-center mb-2">
+                    <h2 class="text-sm font-medium text-gray-600">Spaarrekening</h2>
+                    <svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                    </svg>
+                </div>
+                <div class="text-2xl font-bold text-gray-800">
+                    € 5.000,00
+                </div>
+                <p class="text-xs text-gray-500">Rekening Type: Savings</p>
+            </div>
+
+            <!-- Nieuwe Rekening Toevoegen Kaart -->
+            <div class="bg-white border-dashed border-2 border-gray-300 hover:border-blue-300 transition-colors cursor-pointer flex items-center justify-center p-4 rounded-lg">
+                <div class="text-center">
+                    <svg class="mx-auto mb-2 text-gray-400" width="40" height="40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <p class="text-gray-600">Nieuwe Rekening Toevoegen</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal voor Nieuwe Rekening -->
+        <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+            <div class="bg-white rounded-lg shadow-xl p-6 w-96">
+                <h2 class="text-xl font-semibold mb-4">Nieuwe Rekening Aanmaken</h2>
+                <div class="space-y-4">
+                    <input 
+                        type="text" 
+                        placeholder="Rekeningnaam" 
+                        class="w-full p-2 border rounded"
+                    >
+                    <select class="w-full p-2 border rounded">
+                        <option value="">Selecteer Rekeningtype</option>
+                        <option value="Current">Betaalrekening</option>
+                        <option value="Savings">Spaarrekening</option>
+                        <option value="Business">Zakelijke Rekening</option>
+                    </select>
+                    <div class="flex space-x-2">
+                        <button class="w-full p-2 border rounded text-gray-700 hover:bg-gray-100">
+                            Annuleren
+                        </button>
+                        <button class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                            Rekening Toevoegen
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
