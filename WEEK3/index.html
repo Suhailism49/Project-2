@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Mijn Bank Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard">
+        <div class="sidebar">
+            <h2>Mijn Rekeningen</h2>
+            <div id="accountList"></div>
+        </div>
+        <div class="main-content">
+            <h1>Dashboard</h1>
+            <div id="accountOverview"></div>
+            
+            <div class="new-account-form">
+                <h3>Nieuwe Rekening Aanmaken</h3>
+                <form id="newAccountForm">
+                    <input type="text" id="accountName" placeholder="Rekeningnaam" required>
+                    <select id="accountType" required>
+                        <option value="">Selecteer Rekeningtype</option>
+                        <option value="Betaalrekening">Betaalrekening</option>
+                        <option value="Spaarrekening">Spaarrekening</option>
+                        <option value="Creditcard">Creditcard</option>
+                    </select>
+                    <input type="number" id="initialBalance" placeholder="Beginsaldo" required min="0" step="0.01">
+                    <button type="submit">Rekening Aanmaken</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
