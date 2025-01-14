@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptovaluta Overzicht</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Cryptovaluta Overzicht</h1>
+        
+        <div class="crypto-rates">
+            <div class="rate-item">
+                <span>Bitcoin: €0.00 (90000 per eenheid)</span>
+            </div>
+            <div class="rate-item">
+                <span>Ethereum: €0.00 (4800 per eenheid)</span>
+            </div>
+            <div class="rate-item">
+                <span>Litecoin: €0.00 (250 per eenheid)</span>
+            </div>
+        </div>
+
+        <div class="transaction-form">
+            <div class="form-group">
+                <label for="crypto-select">Kies een cryptovaluta:</label>
+                <select id="crypto-select">
+                    <option value="bitcoin">Bitcoin</option>
+                    <option value="ethereum">Ethereum</option>
+                    <option value="litecoin">Litecoin</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="amount">Bedrag (in €):</label>
+                <input type="number" id="amount" value="100">
+            </div>
+
+            <button class="btn btn-buy" onclick="handleTransaction('buy')">Kopen</button>
+            <button class="btn btn-sell" onclick="handleTransaction('sell')">Verkopen</button>
+
+            <div id="transaction-message" class="transaction-message"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
